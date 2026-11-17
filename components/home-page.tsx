@@ -52,6 +52,9 @@ export default function HomePage({ records }: { records: RecordItem[] }) {
   const committees = byType("COMMITTEE");
   const subcommittees = byType("SUBCOMMITTEE");
   const swaronika = byType("SWARONIKA");
+  const swaronikaEditions: RecordItem[] = swaronika.length ? swaronika : [
+    { id: 1, type: "SWARONIKA", title: "বাণী অর্চনা", subtitle: "প্রচ্ছদ সংগ্রহ" },
+  ];
   const albums = byType("ALBUM");
   const quotes = byType("QUOTE");
   const faqs = byType("FAQ");
@@ -204,7 +207,7 @@ export default function HomePage({ records }: { records: RecordItem[] }) {
           <div className="swaronika-visual"><img src={swaronikaCover} alt="বাণী অর্চনা প্রকাশনার পুরোনো প্রচ্ছদ" /><span className="swaronika-seal"><BookOpen size={22} /><strong>ডিজিটাল</strong><small>আর্কাইভ</small></span></div>
           <div className="swaronika-copy"><div className="section-kicker">প্রকাশনা ও স্মৃতির সংরক্ষণ</div><h2>স্মরণিকা — বছরভিত্তিক ডিজিটাল আর্কাইভ</h2><p>পূর্ববর্তী ও নতুন স্মরণিকার প্রচ্ছদ, PDF, প্রকাশনা কমিটি, বিজ্ঞাপনদাতা এবং গুরুত্বপূর্ণ স্মারক তথ্য বছর অনুযায়ী সাজানো থাকবে।</p>
             <div className="archive-features"><span><CheckCircle2 size={16} /> বছর অনুযায়ী সংস্করণ</span><span><CheckCircle2 size={16} /> PDF দেখুন ও ডাউনলোড</span><span><CheckCircle2 size={16} /> বিজ্ঞাপন ও শুভেচ্ছা সংরক্ষণ</span></div>
-            <div className="archive-editions">{(swaronika.length ? swaronika : [{ id: 1, title: "বাণী অর্চনা", subtitle: "প্রচ্ছদ সংগ্রহ" }]).map((item) => <div key={item.id}><BookOpen size={17} /><span><strong>{item.title}</strong><small>{item.subtitle}</small></span>{item.image?.toLowerCase().endsWith(".pdf") ? <a className="edition-status" href={item.image} target="_blank" rel="noreferrer">PDF দেখুন</a> : <span className="edition-status">নমুনা</span>}</div>)}</div>
+            <div className="archive-editions">{swaronikaEditions.map((item) => <div key={item.id}><BookOpen size={17} /><span><strong>{item.title}</strong><small>{item.subtitle}</small></span>{item.image?.toLowerCase().endsWith(".pdf") ? <a className="edition-status" href={item.image} target="_blank" rel="noreferrer">PDF দেখুন</a> : <span className="edition-status">নমুনা</span>}</div>)}</div>
           </div>
         </div>
       </section>
